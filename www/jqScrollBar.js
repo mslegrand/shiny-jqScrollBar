@@ -19,6 +19,7 @@ $.extend(jqScrollBarBinding, {
         $(el).data('value', value)
         $(el).data('rel', '');
         $(el).data('text','');
+        $(el).scrollTabs();
     },
     getValue: function(el) {
       // Used for returning the value(s) of this input control
@@ -58,17 +59,35 @@ $.extend(jqScrollBarBinding, {
         if(!!data){
             let cmd = data.cmd;
             let text =data.text
-            
+            //$("span").filter(function() { return ($(this).text().indexOf('FIND ME') > -1) }); -- anywhere match
+            //$("span").filter(function() { return ($(this).text() === 'FIND ME') }); -- exact match
             switch(cmd){
-              case 'add':
-                  $('#tabs6').scrollTabs().addTab("<span>"+text+"</span>")
+              case 'add': //to iterate use array.forEach(x=>{...})
+              if(typeof(text)==='string'){
+                  $('#tabs6').scrollTabs().addTab("<span>"+text+"</span>", 0)
+                  } else {
+                      text.forEach(t=>$('#tabs6').scrollTabs().addTab("<span>"+t+"</span>", 0) )
+                  }
                   break;
               case 'remove':
                   $('#tabs6').scrollTabs().removeTabs("span:contains('"+text+"')")
                   break;
               case 'select':
-                  let id = el.id
-                  $('#'+id).find("span:contains('"+text+"')").trigger('click')
+                  //$('#'+id).find("span:contains('"+text+"')").trigger('click')
+                  $('#'+el.id).find('span').filter(function(){
+                      if ($(this).text() === text){
+                          $(this).trigger('click')
+                      }
+                  })
+                  break;
+              case 'rename':
+                  //let id = el.id
+                  console.log(JSON.stringify(text))
+                  $('#'+el.id).find('span').filter(function(){
+                      if ($(this).text() === text.oldName){
+                          $(this).text(text.newName)
+                      }
+                  })
                   break;
               case 'clear':
                   $('#tabs6').scrollTabs().clearTabs();
@@ -90,10 +109,7 @@ $.extend(jqScrollBarBinding, {
     }
 });
 
-$(document).ready(function(){
-    $('#tabs6').scrollTabs();// how to avoid this?
-      //$.tabs6 = $('#tabs6').scrollTabs(); // how to avoid this?
-});
+
 
 // REGISTER INPUT BINDING
 Shiny.inputBindings.register(jqScrollBarBinding);

@@ -6,6 +6,7 @@ inputId.1<-"tabs6"
   
 ui<-fluidPage(
     h1('Test App'),
+    jqScrollBar(inputId=inputId.1,  value= initialValue),
     h3('current Value'),
     textOutput('currentValue'),
     
@@ -16,9 +17,12 @@ ui<-fluidPage(
     textInput(inputId='updateSelectedTab','selected Tab', ""),
     actionButton('updateButton', label='press to update selected tab by name'),
     actionButton('clearButton', label='press to clear'),
-    actionButton('removeButton', label='press to remove tab by position'),
-    actionButton('removeButton', label='press to update selected tab by position'),
-    jqScrollBar(inputId=inputId.1,  value= initialValue)
+    textInput(inputId='renameTab','rename selectedInput Tab to renameInput name'),
+    actionButton('renameButton', label='press to rename')
+    
+    # actionButton('removeButton', label='press to remove tab by position'),
+    # actionButton('removeButton', label='press to update selected tab by position')
+    
 )
 
 server<-function(input,output,session){
@@ -26,6 +30,7 @@ server<-function(input,output,session){
     
     observeEvent(input$addButton,{
         value<-input$addTabValue
+        value<-unlist(strsplit(value,' '))
         tryCatch({
         updateJqScrollBar(session, inputId.1, cmd='add',value=value )
        }, 
@@ -61,6 +66,20 @@ server<-function(input,output,session){
       },
       ignoreInit = TRUE
     )
+    observeEvent(input$renameButton,{
+        oldName<-input$updateSelectedTab
+        newName<-input$renameTab
+        value=list(oldName=oldName, newName=newName)
+        tryCatch({
+            updateJqScrollBar(session, inputId.1, cmd='rename',value=value )
+        }, 
+        error=function(e){
+            # do nothing , record error
+            print('update selection error')
+        })
+      },
+      ignoreInit = TRUE
+    )
     observeEvent(input$clearButton,{
         
         tryCatch({
@@ -73,6 +92,7 @@ server<-function(input,output,session){
       },
       ignoreInit = TRUE
     )
+    
 }
 
 shinyApp(ui=ui, server=server)
