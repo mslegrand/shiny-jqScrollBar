@@ -93,7 +93,7 @@
         'display': 'inline-block',
         'zoom':1,
         '*display': 'inline',
-        '_height': '40px',
+        '_height': '31px',
         '-webkit-user-select': 'none',
         '-khtml-user-select': 'none',
         '-moz-user-select': 'none',

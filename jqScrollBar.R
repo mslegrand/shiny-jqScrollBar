@@ -14,31 +14,41 @@ try({ removeInputHandler("jqScrollBarBinding") })
 #' @param inputId the id of this shiny input
 #' @param value the initial value for this control
 #' export
-jqScrollBar<-function(inputId,  value='whatever' ){
-# note: use toJSON for non-trivial initializations  
- 
+jqScrollBar<-function(inputId,  choices =choices, selected=null){
+# note: use toJSON for non-trivial initializations 
+  txt=selected
+  if(!is.null(selected) && class(selected)=="character"){
+      txt=selected
+  }else if(
+        !is.null(selected) && 
+        class(selected)=="numeric" && 
+        selected>0 && 
+        selected<length(choices)
+  ){
+      txt=names(choices)[[selected]]
+  }
+  fn<-function(n,txt){span(rel=n,txt)}
+  value=toJSON(data.frame(text=txt, rel=choices[[txt]]))
+  
+  ll<-mapply(fn, choices, names(choices),SIMPLIFY = FALSE)
   tagList(
       singleton(tags$head(tags$script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"))), 
       singleton(tags$head(tags$script(src = "jquery.scrolltabs.js"))), 
       singleton(tags$head(tags$script(src = "jquery.mousewheel.js"))),
       singleton(tags$head(tags$script(src = "jqScrollBar.js"))),
       tags$link(rel = "stylesheet", type = "text/css", href = "scrolltabs.css"),
-      tags$link(rel = "stylesheet", type = "text/css", href = "demo.css"),
-      
-           div( id=inputId, class="jqScrollBar style1",
-                span(rel='1', "First Tab"),
-                span(rel='3', "Third Tab"),
-                span(rel='4', "Forth Tab"),
-                span(rel='5', "Fifth Tab"),
-                span(rel='6', "Sixth Tab"),
-                span(rel='7', "Seventh Tab"),
-                span(rel='2', "Second Tab")
+      tags$link(rel = "stylesheet", type = "text/css", href = "ptRScrollTabs.css"),
+      div( id=inputId, class="jqScrollBar style1",
+                ll,
+                'data-ini'=value #attaches value as string to this div
            )
            # STEP 2.3 customize for initialization by attaching data-*** to this div
            # Note: 
            #      'data-xxx'=yyy  only accepts vectors of length 1
            #      for more complex data, try using toJSON to convert value
            #'data-value'=value #attaches value as string to this div
+            
+    
               
   )
 }

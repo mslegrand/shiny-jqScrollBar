@@ -5,8 +5,8 @@
   left: 0px;
   right: 0px;
   text-align: left;
-  height: 40px;
-  margin-bottom: 10px;
+  height: 31px;
+  margin-bottom: 0px;
 }
 
 ul.scroll_tabs_container {
@@ -14,13 +14,13 @@ ul.scroll_tabs_container {
 }
 
 .scroll_tabs_container div.scroll_tab_inner {
-  height: 40px;
+  height: 31px;
 }
 
 .scroll_tabs_container div.scroll_tab_inner span, .scroll_tabs_container div.scroll_tab_inner li {
   padding-left: 20px;
   padding-right: 20px;
-  line-height: 40px;
+  line-height: 31px;
   font-size: 14px;
   background-color: #CCCCCC;
   color: #333333;
@@ -45,7 +45,7 @@ ul.scroll_tabs_container {
 }
 
 .scroll_tabs_container .scroll_tab_left_button {
-  height: 40px;
+  height: 31px;
   background-color: #CCCCCC;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -57,7 +57,7 @@ ul.scroll_tabs_container {
 
 .scroll_tabs_container .scroll_tab_left_button::before {
   content: "\25C0";
-  line-height: 40px;
+  line-height: 31px;
   padding-left: 5px;
 }
 
@@ -71,7 +71,7 @@ ul.scroll_tabs_container {
 }
 
 .scroll_tabs_container .scroll_tab_right_button {
-  height: 40px;
+  height: 31px;
   background-color: #CCCCCC;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -83,7 +83,7 @@ ul.scroll_tabs_container {
 
 .scroll_tabs_container .scroll_tab_right_button::before {
   content: "\25B6";
-  line-height: 40px;
+  line-height: 31px;
   padding-left: 5px;
 }
 
@@ -98,17 +98,17 @@ ul.scroll_tabs_container {
 
 /****************** LIGHT THEME **************************/
 .scroll_tabs_theme_light {
-  height: 42px;
+  height: 31px;
 }
 
 .scroll_tabs_theme_light div.scroll_tab_inner {
-  height: 42px;
+  height: 31px;
 }
 
 .scroll_tabs_theme_light div.scroll_tab_inner span, .scroll_tabs_theme_light div.scroll_tab_inner li {
   padding-left: 20px;
   padding-right: 20px;
-  line-height: 40px;
+  line-height: 31px;
   font-size: 14px;
   background-color: #CCCCCC;
   border-left: 1px solid #999999;
@@ -193,7 +193,7 @@ ul.scroll_tabs_container {
 
 .scroll_tabs_theme_light .scroll_tab_left_button::before {
   content: "\25C0";
-  line-height: 40px;
+  line-height: 31px;
   padding-left: 5px;
 }
 
@@ -226,7 +226,7 @@ ul.scroll_tabs_container {
 
 .scroll_tabs_theme_light .scroll_tab_right_button::before {
   content: "\25B6";
-  line-height: 40px;
+  line-height: 31px;
   padding-left: 5px;
 }
 
@@ -249,17 +249,17 @@ ul.scroll_tabs_container {
 
 /****************** DARK THEME **************************/
 .scroll_tabs_theme_dark {
-  height: 42px;
+  height: 31px;
 }
 
 .scroll_tabs_theme_dark div.scroll_tab_inner {
-  height: 42px;
+  height: 31px;
 }
 
 .scroll_tabs_theme_dark div.scroll_tab_inner span, .scroll_tabs_theme_dark div.scroll_tab_inner li {
   padding-left: 20px;
   padding-right: 20px;
-  line-height: 40px;
+  line-height: 31px;
   font-size: 14px;
   background-color: #333333;
   border-left: 1px solid #222222;
@@ -322,7 +322,7 @@ ul.scroll_tabs_container {
 
 .scroll_tabs_theme_dark .scroll_tab_left_button::before {
   content: "\25C0";
-  line-height: 40px;
+  line-height: 31px;
   padding-left: 5px;
 }
 
@@ -356,7 +356,7 @@ ul.scroll_tabs_container {
 
 .scroll_tabs_theme_dark .scroll_tab_right_button::before {
   content: "\25B6";
-  line-height: 40px;
+  line-height: 31px;
   padding-left: 5px;
 }
 

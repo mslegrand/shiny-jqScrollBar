@@ -11,15 +11,27 @@ $.extend(jqScrollBarBinding, {
         // may use the dnds:
         
         //  1. get element data, hint: use dnd 'from string ' 
-        //$el.scrollTabs();
-        let value = {
-            rel: '',
-            text: ''
-        }
-        $(el).data('value', value)
-        $(el).data('rel', '');
-        $(el).data('text','');
+         let valueIni = $(el).attr(`data-ini`);
+         console.log("vlaue2="+ JSON.stringify(valueIni))
+         valueIni=JSON.parse(valueIni)[0];
+        console.log(valueIni)
+ 
+        
+        
+        $(el).data('value', valueIni)
+        // $(el).data('rel', '');
+        // $(el).data('text','');
         $(el).scrollTabs();
+               // $(el).data('value', value)
+        // $(el).scrollTabs();
+        let text=valueIni.text
+        console.log(text)
+        $(el).find('span').filter(function(){
+                       if ($(this).text() === text){
+                          $(this).trigger('click')
+                      }
+        })
+        
     },
     getValue: function(el) {
       // Used for returning the value(s) of this input control

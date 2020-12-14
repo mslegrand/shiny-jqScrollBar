@@ -1,12 +1,24 @@
 library(shiny)
 source("jqScrollBar.R")
 
-initialValue='200'
+selected='dog'
 inputId.1<-"tabs6"
+choices=list(
+    dog=1,
+    cat=2,
+    rabbit=3,
+    bird=4,
+    squirrel=5,
+    pig=6,
+    horse=7,
+    elephant=8
+)
   
 ui<-fluidPage(
     h1('Test App'),
-    jqScrollBar(inputId=inputId.1,  value= initialValue),
+    jqScrollBar(inputId=inputId.1,  choices =choices, selected='elephant'),
+    jqScrollBar(inputId='tabxx',  choices =choices, selected='elephant'),
+    jqScrollBar(inputId='tabyyy',  choices =choices, selected='elephant'),
     h3('current Value'),
     textOutput('currentValue'),
     
