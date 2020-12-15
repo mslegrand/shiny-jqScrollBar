@@ -4,10 +4,6 @@ library(jsonlite)
 
 try({ removeInputHandler("jqScrollBarBinding") })
 
-# add any helper functions here
-
-
-
 
 #' Constructor for the jqScrollBar
 #' 
@@ -42,14 +38,7 @@ jqScrollBar<-function(inputId,  choices =choices, selected=null){
                 ll,
                 'data-ini'=value #attaches value as string to this div
            )
-           # STEP 2.3 customize for initialization by attaching data-*** to this div
-           # Note: 
-           #      'data-xxx'=yyy  only accepts vectors of length 1
-           #      for more complex data, try using toJSON to convert value
            #'data-value'=value #attaches value as string to this div
-            
-    
-              
   )
 }
 
@@ -77,9 +66,6 @@ shiny::registerInputHandler(
     } else {
       # STEP 6.1: process value (may use fromJSON)
       value<-fromJSON(value);
-      print(value)
-      # STEP 7: add updateJqScrollBar()
-      
       return(value$text)
     }
   }

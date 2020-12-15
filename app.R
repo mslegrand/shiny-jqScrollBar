@@ -2,7 +2,7 @@ library(shiny)
 source("jqScrollBar.R")
 
 selected='dog'
-inputId.1<-"tabs6"
+inputId.1<-"myScrooll"
 choices=list(
     dog=1,
     cat=2,
@@ -43,6 +43,7 @@ server<-function(input,output,session){
     observeEvent(input$addButton,{
         value<-input$addTabValue
         value<-unlist(strsplit(value,' '))
+        value<-mapply(function(i){paste0(i,"-rel")}, value, SIMPLIFY = F, USE.NAMES = T)
         tryCatch({
         updateJqScrollBar(session, inputId.1, cmd='add',value=value )
        }, 
